@@ -7,29 +7,29 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-class Books extends Component {
+class Projects extends Component {
   state = {
-    books: [],
+    projects: [],
     title: "",
     author: "",
-    synopsis: ""
+    details: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadProjects();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadProjects = () => {
+    API.getProjects()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ projects: res.data, title: "", author: "", details: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteProject = id => {
+    API.deleteProject(id)
+      .then(res => this.loadProjects())
       .catch(err => console.log(err));
   };
 
@@ -43,12 +43,12 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.author) {
-      API.saveBook({
+      API.saveProject({
         title: this.state.title,
         author: this.state.author,
-        synopsis: this.state.synopsis
+        details: this.state.details
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadProjects())
         .catch(err => console.log(err));
     }
   };
@@ -59,7 +59,7 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>Submit a Project</h1>
             </Jumbotron>
             <form>
               <Input
@@ -75,39 +75,39 @@ class Books extends Component {
                 placeholder="Author (required)"
               />
               <TextArea
-                value={this.state.synopsis}
+                value={this.state.details}
                 onChange={this.handleInputChange}
-                name="synopsis"
+                name="details"
                 placeholder="Synopsis (Optional)"
               />
               <FormBtn
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Submit Project
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Projects</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.projects.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.projects.map(project => (
+                  <ListItem key={project._id}>
+                    <Link to={"/projects/" + project._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {project.title} by {project.author}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteBook(project._id)} />
                   </ListItem>
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>
@@ -115,4 +115,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Projects;
