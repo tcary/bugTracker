@@ -30,4 +30,17 @@ export default {
   getBug: function (id) {
     return axios.get("/api/issues/" + id);
   },
+
+  // Get all details
+  getDetails: function () {
+    return axios.get("/api/details");
+  },
+  // Saves a detail to the database
+  saveDetail: function (detailData) {
+    return axios.post("/api/details", detailData);
+  },
+  // Gets the bug with the given id
+  getDetail: function (id) {
+    return axios.get("/api/details/" + id);
+  },
 };
