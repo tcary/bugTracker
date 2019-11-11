@@ -132,9 +132,9 @@ class Detail extends Component {
     }
   };
 
-
   render() {
-    console.log(this.state);
+    console.log(this.state.bugs)
+    // console.log(this.state);
     return (
       <Container style={{ width: "80%" }}>
         <Row>
@@ -168,7 +168,7 @@ class Detail extends Component {
                 {this.state.bugs.map(bug => (
                   <ListItem key={bug._id}>
                     <strong>
-                      {bug.bug}
+                      {bug.details}
                     </strong>
                   </ListItem>
                 ))}
