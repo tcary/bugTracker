@@ -11,8 +11,6 @@ class Projects extends Component {
   state = {
     projects: [],
     title: "",
-    bug: "",
-    details: ""
   };
 
   componentDidMount() {
@@ -22,7 +20,7 @@ class Projects extends Component {
   loadProjects = () => {
     API.getProjects()
       .then(res =>
-        this.setState({ projects: res.data, title: "", bug: "", details: "" })
+        this.setState({ projects: res.data, title: "" })
       )
       .catch(err => console.log(err));
   };
@@ -42,11 +40,9 @@ class Projects extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.bug) {
+    if (this.state.title) {
       API.saveProject({
-        title: this.state.title,
-        bug: this.state.bug,
-        details: this.state.details
+        title: this.state.title
       })
         .then(res => this.loadProjects())
         .catch(err => console.log(err));
@@ -56,40 +52,32 @@ class Projects extends Component {
 
 
   render() {
+    console.log(this.state);
     return (
-      <Container fluid>
+      <Container style={{ width: "60%" }}>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
+            {/* <Jumbotron>
               <h1>Submit a Project</h1>
-            </Jumbotron>
+            </Jumbotron> */}
             <form>
+
+              <FormBtn
+                disabled={!(this.state.title)}
+                onClick={this.handleFormSubmit}
+              >
+                + Add a Project
+              </FormBtn>
               <Input
                 value={this.state.title}
                 onChange={this.handleInputChange}
                 name="title"
                 placeholder="Project Title (required)"
               />
-              <Input
-                value={this.state.bug}
-                onChange={this.handleInputChange}
-                name="bug"
-                placeholder="Name Of The Issue (required)"
-              />
-              <TextArea
-                value={this.state.details}
-                onChange={this.handleInputChange}
-                name="details"
-                placeholder="Description (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.bug && this.state.title)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Project
-              </FormBtn>
             </form>
           </Col>
+        </Row>
+        <Row>
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>Projects</h1>

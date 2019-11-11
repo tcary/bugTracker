@@ -9,8 +9,6 @@ const projectSchema = new Schema({
     }
   ],
   title: { type: String, required: true },
-  bug: { type: String, required: true },
-  details: String,
   date: { type: Date, default: Date.now }
 });
 
