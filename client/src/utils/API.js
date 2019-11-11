@@ -5,6 +5,10 @@ export default {
   getProjects: function () {
     return axios.get("/api/projects");
   },
+  // Gets all bugs
+  getBugs: function () {
+    return axios.get("/api/projects/bugs");
+  },
   // Gets the project with the given id
   getProject: function (id) {
     return axios.get("/api/projects/" + id);

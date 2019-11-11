@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
     return (
-        <div class="card">
+        <div className="card">
             {/* <div class="card-body">
                 <blockquote className="blockquote mb-0">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
