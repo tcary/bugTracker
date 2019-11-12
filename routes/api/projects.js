@@ -2,7 +2,8 @@ const router = require("express").Router();
 const projectsController = require("../../controllers/projectsController");
 
 // Matches with "/api/projects"
-router.route("/")
+router
+  .route("/")
   .get(projectsController.findAll)
   .post(projectsController.create);
 
@@ -13,4 +14,6 @@ router
   .put(projectsController.update)
   .delete(projectsController.remove);
 
+// router.route("/issues/details/:id");
+// .get()
 module.exports = router;
