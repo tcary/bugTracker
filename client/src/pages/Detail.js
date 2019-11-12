@@ -84,12 +84,13 @@ class Detail extends Component {
   // state = {
   //   project: {}
   // };
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       bugs: [],
       bug: "",
       details: "",
+      // projectId: this.props.match.params,
       show: false
     };
   }
@@ -108,9 +109,9 @@ class Detail extends Component {
   }
   loadBugs = () => {
     // console.log(res);
-    API.getBugs()
+    API.getProject(this.props.match.params.id)
       .then(res =>
-        this.setState({ bugs: res.data, bug: "", details: "" })
+        this.setState({ bugs: res.data.issues, bug: "", details: "" })
       )
       .catch(err => console.log(err));
   };
@@ -128,7 +129,8 @@ class Detail extends Component {
     if (this.state.bug && this.state.details && this.state.show) {
       API.saveBug({
         bug: this.state.bug,
-        details: this.state.details
+        details: this.state.details,
+        projectId: this.props.match.params.id
       })
         .then(res => this.loadBugs())
         .catch(err => console.log(err));
@@ -136,7 +138,8 @@ class Detail extends Component {
   };
 
   render() {
-    console.log(this.state.bugs)
+    // console.log(this.state.bugs)
+    console.log(this.state);
     // console.log(this.state);
     return (
       <Container style={{ width: "80%" }}>

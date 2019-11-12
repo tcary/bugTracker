@@ -18,7 +18,7 @@ export default {
     return axios.post("/api/projects", projectData);
   },
 
-  // Gets all bugs
+  // Gets all bugs for future development
   getBugs: function () {
     return axios.get("/api/issues");
   },
