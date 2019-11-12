@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "reactstrap";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import BugCard from "../components/Bug/BugCard";
-import BugDetails from "../components/Bug/BugDetails";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import ToggleDisplay from 'react-toggle-display';
 
 // const Detail = () => {
 
@@ -85,12 +84,15 @@ class Detail extends Component {
   // state = {
   //   project: {}
   // };
-
-  state = {
-    bugs: [],
-    bug: "",
-    details: ""
-  };
+  constructor() {
+    super();
+    this.state = {
+      bugs: [],
+      bug: "",
+      details: "",
+      show: false
+    };
+  }
 
   // Add code to get the project with an _id equal to the id in the route param
   // e.g. http://localhost:3000/projects/:id
@@ -121,8 +123,9 @@ class Detail extends Component {
   };
 
   handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.bug && this.state.details) {
+    //event.preventDefault();
+    this.setState({ show: !this.state.show })
+    if (this.state.bug && this.state.details && this.state.show) {
       API.saveBug({
         bug: this.state.bug,
         details: this.state.details
@@ -138,6 +141,11 @@ class Detail extends Component {
     return (
       <Container style={{ width: "80%" }}>
         <Row>
+          <Col size="md-2">
+            <Link to="/projects">← Back to Projects</Link>
+          </Col>
+        </Row>
+        <Row>
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>Bugs</h1>
@@ -146,7 +154,7 @@ class Detail extends Component {
               <List>
                 {this.state.bugs.map(bug => (
                   <ListItem key={bug._id}>
-                    <Link to={"/bugs/" + bug._id}>
+                    <Link to={"/details/" + bug._id}>
                       <strong>
                         {bug.bug}
                       </strong>
@@ -159,7 +167,32 @@ class Detail extends Component {
                 <h3>No Results to Display</h3>
               )}
           </Col>
-          <Col size="md-6 sm-12">
+          <Col size="md-6">
+            <FormBtn
+
+              // disabled={!(this.state.bug && this.state.details)}
+              onClick={() => this.handleFormSubmit()}>
+
+              + Submit a Bug
+              </FormBtn>
+            <ToggleDisplay show={this.state.show}>
+              <form>
+                <Input
+                  value={this.state.bug}
+                  onChange={this.handleInputChange}
+                  name="bug"
+                  placeholder="Name Of The Issue (required)"
+                />
+                <TextArea
+                  value={this.state.details}
+                  onChange={this.handleInputChange}
+                  name="details"
+                  placeholder="Description (required)"
+                />
+              </form >
+            </ToggleDisplay>
+          </Col>
+          {/* <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>Description Of The Issue</h1>
             </Jumbotron>
@@ -176,38 +209,9 @@ class Detail extends Component {
             ) : (
                 <h3>No Results to Display</h3>
               )}
-          </Col>
+          </Col> */}
         </Row>
-        <Row>
-          <Col size="md-2">
-            <Link to="/">← Back to Projects</Link>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-6">
-            <FormBtn
-              disabled={!(this.state.bug && this.state.details)}
-              onClick={this.handleFormSubmit}
-            >
-              + Submit a Bug
-              </FormBtn>
-            <form>
-              <Input
-                value={this.state.bug}
-                onChange={this.handleInputChange}
-                name="bug"
-                placeholder="Name Of The Issue (required)"
-              />
-              <TextArea
-                value={this.state.details}
-                onChange={this.handleInputChange}
-                name="details"
-                placeholder="Description (required)"
-              />
-            </form>
-          </Col>
-        </Row>
-      </Container>
+      </Container >
     );
   }
 }

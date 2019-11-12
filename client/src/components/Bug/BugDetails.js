@@ -6,8 +6,8 @@ const BugDetails = props => {
     console.log(props);
     return (
         <Card>
-            <h2><strong>Detailed Bug Info for {props.bug}:</strong></h2>
-            <h4>{props.details}</h4>
+            <h2><strong>Detailed Bug Info for {bug.bug}:</strong></h2>
+            <h4>{bug.details}</h4>
         </Card>
     )
 }

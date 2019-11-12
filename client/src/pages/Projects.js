@@ -5,13 +5,18 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "reactstrap";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
+import ToggleDisplay from 'react-toggle-display';
 
 class Projects extends Component {
-  state = {
-    projects: [],
-    title: "",
-  };
+  constructor() {
+    super();
+    this.state = {
+      projects: [],
+      title: "",
+      show: false
+    };
+  }
 
   componentDidMount() {
     this.loadProjects();
@@ -39,7 +44,8 @@ class Projects extends Component {
   };
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    // event.preventDefault();
+    this.setState({ show: !this.state.show })
     if (this.state.title) {
       API.saveProject({
         title: this.state.title
@@ -60,21 +66,22 @@ class Projects extends Component {
             {/* <Jumbotron>
               <h1>Submit a Project</h1>
             </Jumbotron> */}
-            <form>
-
-              <FormBtn
-                disabled={!(this.state.title)}
-                onClick={this.handleFormSubmit}
-              >
-                + Add a Project
+            <FormBtn
+              // disabled={!(this.state.title)}
+              onClick={this.handleFormSubmit}
+            >
+              + Add a Project
               </FormBtn>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Project Title (required)"
-              />
-            </form>
+            <ToggleDisplay show={this.state.show}>
+              <form>
+                <Input
+                  value={this.state.title}
+                  onChange={this.handleInputChange}
+                  name="title"
+                  placeholder="Project Title (required)"
+                />
+              </form>
+            </ToggleDisplay>
           </Col>
         </Row>
         <Row>
