@@ -5,7 +5,6 @@ import { Col, Row, Container } from "reactstrap";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-// import { List, ListItem } from "../components/List";
 
 class EditDetail extends Component {
   state = {
@@ -15,13 +14,14 @@ class EditDetail extends Component {
 
   componentDidMount() {
     // console.log(this.props.match.params.id);
-    this.loadIssues(this.props.match.params.id);
+    this.loadIssues();
   }
-  loadIssues = id => {
+  loadIssues = () => {
     // console.log("how to see the res", this.state);
-    API.getDetail(id)
-      .then(res => console.log(res))
-      // .then(res => this.setState({ issue: res.data, issue: "", details: "" }))
+    API.getDetail(this.props.match.params.id)
+      .then(res =>
+        this.setState({ details: res.data.details, issue: res.data.issue })
+      )
       .catch(err => console.log(err));
   };
 
@@ -45,7 +45,7 @@ class EditDetail extends Component {
   // };
 
   render() {
-    console.log("???", this.state.issues);
+    // console.log("???", this.state.details);
     // console.log(this.state);
     return (
       <Container style={{ width: "80%" }}>
@@ -60,26 +60,12 @@ class EditDetail extends Component {
             <Jumbotron>
               <h1>Description Of The Issue</h1>
             </Jumbotron>
-            {this.state.issue ? (
+            {this.state.details ? (
               <IssueDetails />
             ) : (
-              //   <List>
-              //     {/* {this.state.issue} */}
-              //     <ListItem key={issues._id}>
-              //       <strong>{issue.details}</strong>
-              //     </ListItem>
-              //     )}
-              //   </List>
               <h3>No Results to Display</h3>
             )}
           </Col>
-          {/* <Col size="md-6 sm-12">
-            {this.state.issues.length ? (
-              <IssueDetails />
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col> */}
         </Row>
       </Container>
     );
