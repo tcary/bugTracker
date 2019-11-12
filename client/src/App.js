@@ -6,6 +6,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
+import EditDetail from "./pages/EditDetail";
 
 function App() {
   return (
@@ -20,13 +21,15 @@ function App() {
           <Route exact path="/projects/:id" component={Detail} />
           <Route exact path="/projects/issues" component={Detail} />
           <Route exact path="/projects/issues/:id" component={Detail} />
+          <Route exact path="/issues/details/:id" component={EditDetail} />
           <Route component={NoMatch} />
         </Switch>
+
         </div>
         <Footer />
+
       </div>
     </Router>
-
   );
 }
 

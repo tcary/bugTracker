@@ -6,89 +6,14 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import ToggleDisplay from 'react-toggle-display';
+import ToggleDisplay from "react-toggle-display";
 
-// const Detail = () => {
-
-//   const [data, setData] = useState({
-//     bugs: ["hello"],
-//     selectedBug: null,
-//     project: ""
-//   })
-
-//   const getProject = id => {
-//     API.getProject(id)
-//       .then(res => {
-//         console.log(res);
-//         setData({
-//           bugs: res.data,
-//           selectedBug: null,
-//           project: res.data.title
-//         })
-//       })
-//       .catch(err => console.log(err));
-//   }
-
-//   const { bugs, selectedBug, project } = data;
-
-//   useEffect(() => {
-//     getProject()
-//     document.title = `Details on ${selectedBug}`;
-//   }, [selectedBug]);
-
-//   const setSelectedBug = bug => {
-//     setData({
-//       ...data,
-//       selectedBug: bug
-//     });
-//   }
-
-//   return (
-//     <Container>
-//       <Row>
-//         <Col md={6}><h1>Bugs for {project}</h1></Col>
-//         <Col md={6}><h1>Details for {selectedBug}</h1></Col>
-//       </Row>
-//       <Row>
-//         <Col md={6}>
-//           <List>
-//             {bugs.map(bug => (
-//               <ListItem
-//                 key={bug.id}
-//                 id={bug.id}
-//                 bug={bug.title}
-//                 isActive={bug === selectedBug}
-//               />
-//             ))}
-//           </List>
-//           {/* <BugCard
-//             key={bug.id}
-//             id={bug.id}
-//             bug={bug.title}
-//             isActive={bug === selectedBug}
-//           /> */}
-//         </Col>
-//         <Col md={6}>
-//           {selectedBug ? (
-//             <BugDetails
-//               bug={selectedBug.details}
-//             />
-//           ) : (
-//               <h3>Click on the bug to the left to see the details!</h3>
-//             )}
-//         </Col>
-//       </Row>
-//     </Container>
-//   )
 class Detail extends Component {
-  // state = {
-  //   project: {}
-  // };
   constructor(props) {
     super(props);
     this.state = {
-      bugs: [],
-      bug: "",
+      issues: [],
+      issue: "",
       details: "",
       // projectId: this.props.match.params,
       show: false
@@ -105,13 +30,13 @@ class Detail extends Component {
   //     .catch(err => console.log(err));
   // }
   componentDidMount() {
-    this.loadBugs();
+    this.loadIssues();
   }
-  loadBugs = () => {
+  loadIssues = () => {
     // console.log(res);
     API.getProject(this.props.match.params.id)
       .then(res =>
-        this.setState({ bugs: res.data.issues, bug: "", details: "" })
+        this.setState({ issues: res.data.issues, issue: "", details: "" })
       )
       .catch(err => console.log(err));
   };
@@ -125,21 +50,21 @@ class Detail extends Component {
 
   handleFormSubmit = event => {
     //event.preventDefault();
-    this.setState({ show: !this.state.show })
-    if (this.state.bug && this.state.details && this.state.show) {
-      API.saveBug({
-        bug: this.state.bug,
+    this.setState({ show: !this.state.show });
+    if (this.state.issue && this.state.details && this.state.show) {
+      API.saveIssue({
+        issue: this.state.issue,
         details: this.state.details,
         projectId: this.props.match.params.id
       })
-        .then(res => this.loadBugs())
+        .then(res => this.loadIssues())
         .catch(err => console.log(err));
     }
   };
 
   render() {
-    // console.log(this.state.bugs)
-    console.log(this.state);
+    // console.log(this.state.issues)
+    // console.log(this.state);
     // console.log(this.state);
     return (
       <Container style={{ width: "80%" }}>
@@ -151,39 +76,36 @@ class Detail extends Component {
         <Row>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Bugs</h1>
+              <h1>Issues</h1>
             </Jumbotron>
-            {this.state.bugs.length ? (
+            {this.state.issues.length ? (
               <List>
-                {this.state.bugs.map(bug => (
-                  <ListItem key={bug._id}>
-                    <Link to={"/details/" + bug._id}>
-                      <strong>
-                        {bug.bug}
-                      </strong>
+                {this.state.issues.map(issue => (
+                  <ListItem key={issue._id}>
+                    <Link to={"/issues/details/" + issue._id}>
+                      <strong>{issue.issue}</strong>
                     </Link>
                     {/* <DeleteBtn onClick={() => this.deleteProject(project._id)} /> */}
                   </ListItem>
                 ))}
               </List>
             ) : (
-                <h3>No Results to Display</h3>
-              )}
+              <h3>No Results to Display</h3>
+            )}
           </Col>
           <Col size="md-6">
             <FormBtn
-
-              // disabled={!(this.state.bug && this.state.details)}
-              onClick={() => this.handleFormSubmit()}>
-
-              + Submit a Bug
-              </FormBtn>
+              // disabled={!(this.state.issue && this.state.details)}
+              onClick={() => this.handleFormSubmit()}
+            >
+              + Submit an Issue
+            </FormBtn>
             <ToggleDisplay show={this.state.show}>
               <form>
                 <Input
-                  value={this.state.bug}
+                  value={this.state.issue}
                   onChange={this.handleInputChange}
-                  name="bug"
+                  name="issue"
                   placeholder="Name Of The Issue (required)"
                 />
                 <TextArea
@@ -192,19 +114,19 @@ class Detail extends Component {
                   name="details"
                   placeholder="Description (required)"
                 />
-              </form >
+              </form>
             </ToggleDisplay>
           </Col>
           {/* <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>Description Of The Issue</h1>
             </Jumbotron>
-            {this.state.bugs.length ? (
+            {this.state.issues.length ? (
               <List>
-                {this.state.bugs.map(bug => (
-                  <ListItem key={bug._id}>
+                {this.state.issues.map(issue => (
+                  <ListItem key={issue._id}>
                     <strong>
-                      {bug.details}
+                      {issue.details}
                     </strong>
                   </ListItem>
                 ))}
@@ -214,7 +136,7 @@ class Detail extends Component {
               )}
           </Col> */}
         </Row>
-      </Container >
+      </Container>
     );
   }
 }
