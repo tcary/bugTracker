@@ -11,8 +11,10 @@ import EditDetail from "./pages/EditDetail";
 function App() {
   return (
     <Router>
-      <div>
+      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh"}}>
+
         <Nav />
+        <div style={{ flex: 1 }}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/projects" component={Projects} />
@@ -22,7 +24,10 @@ function App() {
           <Route exact path="/issues/details/:id" component={EditDetail} />
           <Route component={NoMatch} />
         </Switch>
-        {/* <Footer /> */}
+
+        </div>
+        <Footer />
+
       </div>
     </Router>
   );
