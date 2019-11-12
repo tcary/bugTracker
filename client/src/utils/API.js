@@ -30,6 +30,10 @@ export default {
   getIssue: function(id) {
     return axios.get("/api/issues/" + id);
   },
+  // Deletes the issue with the given id
+  deleteIssue: function(id) {
+    return axios.delete("/api/issues/" + id);
+  },
 
   // Get all details
   getDetails: function() {

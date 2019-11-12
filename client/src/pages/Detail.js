@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import DeleteBtn from "../components/DeleteBtn";
 import { Col, Row, Container } from "reactstrap";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
@@ -48,6 +49,12 @@ class Detail extends Component {
     });
   };
 
+  deleteIssue = id => {
+    API.deleteIssue(id)
+      .then(res => this.loadIssues())
+      .catch(err => console.log(err));
+  };
+
   handleFormSubmit = event => {
     //event.preventDefault();
     this.setState({ show: !this.state.show });
@@ -85,7 +92,7 @@ class Detail extends Component {
                     <Link to={"/issues/details/" + issue._id}>
                       <strong>{issue.issue}</strong>
                     </Link>
-                    {/* <DeleteBtn onClick={() => this.deleteProject(project._id)} /> */}
+                    <DeleteBtn onClick={() => this.deleteIssue(issue._id)} />
                   </ListItem>
                 ))}
               </List>
