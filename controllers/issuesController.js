@@ -16,8 +16,16 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
+        console.log("WTH", req.body);
         db.Issue
-            .create(req.body)
+            .create({
+                bug: req.body.bug,
+                details: req.body.details
+            })
+            .then(issue => {
+                console.log("This is the one for Jegor", issue);
+                return db.Project.findOneAndUpdate({ _id: req.body.projectId }, { $push: { issues: issue._id } }, { new: true })
+            })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
