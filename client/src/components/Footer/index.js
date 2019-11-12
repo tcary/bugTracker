@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     
       <footer>
-        <div className="my-5 mb-0 shadow-lg p-3 mb-5 bg-white rounded">
+        <div className="mb-0 shadow-lg p-3 bg-white rounded">
           
           <a> Jegors Jeskovs </a>
           <span> & </span>

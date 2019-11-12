@@ -10,8 +10,10 @@ import HomePage from "./pages/HomePage";
 function App() {
   return (
     <Router>
-      <div>
+      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh"}}>
+
         <Nav />
+        <div style={{ flex: 1 }}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/projects" component={Projects} />
@@ -20,6 +22,7 @@ function App() {
           <Route exact path="/projects/issues/:id" component={Detail} />
           <Route component={NoMatch} />
         </Switch>
+        </div>
         <Footer />
       </div>
     </Router>
