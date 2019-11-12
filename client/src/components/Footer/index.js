@@ -1,20 +1,25 @@
 import React from "react";
+import "./style.css";
 
-function Footer() {
-    return (
-        <div className="card">
-            {/* <div class="card-body">
-                <blockquote className="blockquote mb-0">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                </blockquote>
-            </div> */}
-            <div style={{ textAlign: "center" }}
-                className="sticky footer">
-                Copyright
-            </div>
+const Footer = () => {
+  return (
+    
+      <footer>
+        <div className="my-5 mb-0 shadow-lg p-3 mb-5 bg-white rounded">
+          
+          <a> Jegors Jeskovs </a>
+          <span> & </span>
+          <a> Tetiana Cary </a>
+          <span> | </span>
+          <a className="sources" href="">
+            GitHub Repo
+          </a>
+
+          
         </div>
-    );
-}
+      </footer>
+    
+  );
+};
 
 export default Footer;

@@ -23,7 +23,7 @@ module.exports = {
                 details: req.body.details
             })
             .then(issue => {
-                console.log("This is the one for Jegor", issue);
+                console.log("Issues log", issue);
                 return db.Project.findOneAndUpdate({ _id: req.body.projectId }, { $push: { issues: issue._id } }, { new: true })
             })
             .then(dbModel => res.json(dbModel))
