@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "reactstrap";
 import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
-import ToggleDisplay from 'react-toggle-display';
+import ToggleDisplay from "react-toggle-display";
 
 class Projects extends Component {
   constructor() {
@@ -24,9 +24,7 @@ class Projects extends Component {
 
   loadProjects = () => {
     API.getProjects()
-      .then(res =>
-        this.setState({ projects: res.data, title: "" })
-      )
+      .then(res => this.setState({ projects: res.data, title: "" }))
       .catch(err => console.log(err));
   };
 
@@ -45,7 +43,7 @@ class Projects extends Component {
 
   handleFormSubmit = event => {
     // event.preventDefault();
-    this.setState({ show: !this.state.show })
+    this.setState({ show: !this.state.show });
     if (this.state.title) {
       API.saveProject({
         title: this.state.title
@@ -55,10 +53,8 @@ class Projects extends Component {
     }
   };
 
-
-
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <Container style={{ width: "60%" }}>
         <Row>
@@ -71,7 +67,7 @@ class Projects extends Component {
               onClick={this.handleFormSubmit}
             >
               + Add a Project
-              </FormBtn>
+            </FormBtn>
             <ToggleDisplay show={this.state.show}>
               <form>
                 <Input
@@ -94,17 +90,17 @@ class Projects extends Component {
                 {this.state.projects.map(project => (
                   <ListItem key={project._id}>
                     <Link to={"/projects/" + project._id}>
-                      <strong>
-                        {project.title}
-                      </strong>
+                      <strong>{project.title}</strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteProject(project._id)} />
+                    <DeleteBtn
+                      onClick={() => this.deleteProject(project._id)}
+                    />
                   </ListItem>
                 ))}
               </List>
             ) : (
-                <h3>No Results to Display</h3>
-              )}
+              <h3>No Results to Display</h3>
+            )}
           </Col>
         </Row>
       </Container>
