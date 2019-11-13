@@ -9,10 +9,12 @@ let projectSeed = {
   date: new Date(Date.now())
 };
 
-const issueSeed = {
+let issueSeed = {
   issue: "Issue render",
   details: "Can't get it to post",
-  date: new Date(Date.now())
+  date: new Date(Date.now()),
+  resolved: false,
+  projectId: ""
 };
 
 db.Issue.remove({})

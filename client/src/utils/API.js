@@ -34,6 +34,13 @@ export default {
   deleteIssue: function(id) {
     return axios.delete("/api/issues/" + id);
   },
+  updateIssue: function(id) {
+    // console.log("Api.js", id);
+    return axios.put(`/api/issues/details/${id}`);
+  },
+  // unresolveIssue: function(id) {
+  //   return axios.put("api/issues" + id);
+  // },
 
   // Get all details
   getDetails: function() {

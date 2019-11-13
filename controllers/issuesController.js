@@ -2,7 +2,6 @@ const db = require("../models");
 
 // Defining methods for the projectsController
 module.exports = {
-
   findAll: function(req, res) {
     db.Issue.find(req.query)
       .sort({ date: -1 })
@@ -32,7 +31,21 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Issue.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Issue.findOneAndUpdate({
+      issue: req.body.issue,
+      resolved: req.body.resolved
+    })
+      .then(issue => {
+        console.log("this is it", issue);
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  checkedUpdate: function(req, res) {
+    db.Issue.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { resolved: true } }
+    )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -42,5 +55,4 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
-
 };
