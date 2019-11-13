@@ -5,8 +5,8 @@ const IssueDetails = props => {
   console.log("issue props", props);
   return (
     <Card>
-      <h2>{props.details}</h2>
-      {/* <h4>{issue.details}</h4> */}
+      <h2>Name: {props.issue}</h2>
+      <h4>Details: {props.details}</h4>
     </Card>
   );
 };

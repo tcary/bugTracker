@@ -5,6 +5,7 @@ import { Col, Row, Container } from "reactstrap";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
+// import { timingSafeEqual } from "crypto";
 
 class EditDetail extends Component {
   state = {
@@ -19,8 +20,9 @@ class EditDetail extends Component {
   loadIssues = () => {
     // console.log("how to see the res", this.state);
     API.getDetail(this.props.match.params.id)
-      .then(res =>
-        this.setState({ details: res.data.details, issue: res.data.issue })
+      .then(
+        res => this.setState({ issue: res.data })
+        // this.setState({ details: res.data.details, issue: res.data.issue })
       )
       .catch(err => console.log(err));
   };
@@ -58,11 +60,16 @@ class EditDetail extends Component {
         <Row>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Description Of The Issue</h1>
+              <h1>Description Of The Issue:</h1>
             </Jumbotron>
-            {this.state.details ? (
-              <IssueDetails />
+            {this.state.issue.details ? (
+              <IssueDetails
+                key={this.state.issue.id}
+                issue={this.state.issue.issue}
+                details={this.state.issue.details}
+              />
             ) : (
+              // <h2>{this.state.issue.details}</h2>
               <h3>No Results to Display</h3>
             )}
           </Col>

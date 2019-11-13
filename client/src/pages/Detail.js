@@ -70,8 +70,8 @@ class Detail extends Component {
   };
 
   render() {
-    // console.log(this.state.issues)
-    // console.log(this.state);
+    // console.log(this.state.issues);
+    console.log(this.state);
     // console.log(this.state);
     return (
       <Container style={{ width: "80%" }}>
