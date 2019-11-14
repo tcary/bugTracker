@@ -16,7 +16,7 @@ class Detail extends Component {
       issues: [],
       issue: "",
       details: "",
-      // projectId: this.props.match.params,
+      projectId: this.props.match.params,
       show: false
     };
   }
@@ -70,8 +70,8 @@ class Detail extends Component {
   };
 
   render() {
-    // console.log(this.state.issues)
-    // console.log(this.state);
+    // console.log(this.state.issues);
+    console.log("Check it out ", this.state);
     // console.log(this.state);
     return (
       <Container style={{ width: "80%" }}>
@@ -114,12 +114,14 @@ class Detail extends Component {
                   onChange={this.handleInputChange}
                   name="issue"
                   placeholder="Name Of The Issue (required)"
+                  projectId={this.props.match.params.id}
                 />
                 <TextArea
                   value={this.state.details}
                   onChange={this.handleInputChange}
                   name="details"
                   placeholder="Description (required)"
+                  projectId={this.props.match.params.id}
                 />
               </form>
             </ToggleDisplay>

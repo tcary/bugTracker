@@ -14,6 +14,9 @@ router
   .put(issuesController.update)
   .delete(issuesController.remove);
 
-router.route("/details/:id").get(issuesController.findById);
+router
+  .route("/details/:id")
+  .put(issuesController.checkedUpdate)
+  .get(issuesController.findById);
 
 module.exports = router;
