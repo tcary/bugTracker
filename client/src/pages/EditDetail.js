@@ -61,7 +61,7 @@ class EditDetail extends Component {
     // console.log("???", this.state.details);
     // console.log(this.state);
     return (
-      <Container style={{ width: "80%" }}>
+      <Container style={{ width: "70%" }}>
         <Row>
           <Col size="md-2">
             <Link to="/projects">← Back to Projects</Link>

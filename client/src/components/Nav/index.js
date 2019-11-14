@@ -1,7 +1,8 @@
 import React from "react";
+import { Button } from "reactstrap";
 import "./style.scss";
 
-function Nav() {
+function Nav(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <a className="navbar-brand" href="/">
@@ -9,24 +10,41 @@ function Nav() {
         {/* React Debugger */}
         <h1>React Debugger</h1>
       </a>
-      {/* <div className="container"> */}
 
-      <div className="bird-container bird-container--one">
-        <div className="bird bird--one"></div>
+      <div className="bug-container bug-container--one">
+        <div className="bug bug--one"></div>
       </div>
 
-      <div className="bird-container bird-container--two">
-        <div className="bird bird--two"></div>
+      <div className="bug-container bug-container--two">
+        <div className="bug bug--two"></div>
       </div>
 
-      <div className="bird-container bird-container--three">
-        <div className="bird bird--three"></div>
+      <div className="bug-container bug-container--three">
+        <div className="bug bug--three"></div>
       </div>
 
-      <div className="bird-container bird-container--four">
-        <div className="bird bird--four"></div>
+      <div className="bug-container bug-container--four">
+        <div className="bug bug--four"></div>
       </div>
-      {/* </div> */}
+      <div className="login">
+        <Button outline color="secondary">
+          Log In
+        </Button>{" "}
+        <Button outline color="secondary">
+          Sign Up
+        </Button>{" "}
+        <img
+          className="search"
+          src="./img/magnifying-glass.png"
+          style={{
+            float: "right",
+            width: "30px",
+            height: "30px",
+            color: "link",
+            marginLeft: "50px"
+          }}
+        ></img>
+      </div>
     </nav>
   );
 }
