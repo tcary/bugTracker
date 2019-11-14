@@ -15,6 +15,16 @@ nav {
   color: rgb(136, 129, 129);
 }
 
+.login {
+  z-index: 3;
+  margin-left: 400px;
+}
+
+.search {
+  z-index: 3;
+  margin-left: 50px;
+}
+
 h1 {
   font-family: "Arima Madurai", cursive;
   color: rgb(136, 129, 129);
@@ -64,8 +74,8 @@ h1 {
 //   padding: 2rem;
 // }
 
-.bird {
-  // background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells.svg);
+.bug {
+  // background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bug.bug-cells.svg);
   background-image: url(bugs.png);
   background-size: auto 100%;
   width: 88px;
@@ -97,7 +107,7 @@ h1 {
   }
 }
 
-.bird-container {
+.bug-container {
   position: absolute;
   top: 20%;
   left: -10%;
