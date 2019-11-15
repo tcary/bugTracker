@@ -81,7 +81,9 @@ class EditDetail extends Component {
                   details={this.state.issue.details}
                   projectId={this.state.issue.projectId}
                 />
-                <h5>Have you resolved this issue? </h5>
+                <h5 style={{ color: "#2a878c", margin: "15px" }}>
+                  Have you resolved this issue?{" "}
+                </h5>
                 <ResolvedBtn
                   onClick={() => {
                     this.updateIssue(this.state.issue._id);

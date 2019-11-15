@@ -27,21 +27,22 @@ function Nav(props) {
         <div className="bug bug--four"></div>
       </div>
       <div className="login">
-        <Button outline color="secondary">
+        <Button className="button" outline color="secondary">
           Log In
         </Button>{" "}
-        <Button outline color="secondary">
+        <Button className="button" outline color="secondary">
           Sign Up
         </Button>{" "}
         <img
           className="search"
           src="./img/magnifying-glass.png"
           style={{
-            float: "right",
+            // float: "right",
             width: "30px",
             height: "30px",
             color: "link",
-            marginLeft: "50px"
+            zIndex: "3",
+            marginLeft: "50%"
           }}
         ></img>
       </div>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function NoMatch() {
   return (
-    <Container fluid>
+    <Container style={{ width: "70%" }}>
       <Row>
         <Col size="md-2">
           <Link to="/projects">← Back to Projects</Link>
@@ -16,9 +16,14 @@ function NoMatch() {
           <Jumbotron>
             <h1>404 Page Not Found</h1>
             <h1>
-              <span role="img" aria-label="Face With Rolling Eyes Emoji">
+              <img
+                src="./img/logo1.jpg"
+                alt="Robot with broken parts"
+                style={{ width: "25%", height: "25%", marginTop: "7%" }}
+              ></img>
+              {/* <span role="img" aria-label="Face With Rolling Eyes Emoji">
                 🙄
-              </span>
+              </span> */}
             </h1>
           </Jumbotron>
         </Col>

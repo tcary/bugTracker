@@ -77,7 +77,9 @@ class Detail extends Component {
       <Container style={{ width: "70%" }}>
         <Row>
           <Col size="md-2">
-            <Link to="/projects">← Back to Projects</Link>
+            <Link to="/projects" style={{ margin: "20px" }}>
+              ← Back to Projects
+            </Link>
           </Col>
         </Row>
         <Row>

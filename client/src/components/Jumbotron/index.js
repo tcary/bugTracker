@@ -9,7 +9,9 @@ function Jumbotron({ children }) {
         paddingTop: 50,
         textAlign: "center",
         backgroundColor: "black",
-        opacity: "0.5"
+        opacity: "0.8",
+        border: "1px #2A878C solid",
+        marginTop: "3%"
       }}
       className="jumbotron"
     >
