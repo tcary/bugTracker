@@ -85,7 +85,7 @@ class Projects extends Component {
                 // disabled={!(this.state.title)}
                 onClick={this.handleFormSubmit}
               >
-                {/* {" "} */}+ Add a Project
+                + Add a Project
               </FormBtn>
               <ToggleDisplay show={this.state.show}>
                 <form>
