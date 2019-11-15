@@ -33,7 +33,7 @@ export function FormBtn(props) {
         color: "#2a878c"
       }}
       // className="btn btn-success"
-      outline
+      // outline
       color="secondary"
     >
       {props.children}
