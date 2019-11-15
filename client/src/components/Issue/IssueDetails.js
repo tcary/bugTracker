@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "reactstrap";
+import "./style.scss";
 
 const IssueDetails = props => {
   console.log("issue props", props);

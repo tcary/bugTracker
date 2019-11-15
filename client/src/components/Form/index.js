@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.scss";
 
 // This file exports the Input, TextArea, and FormBtn components
 
@@ -20,7 +21,21 @@ export function TextArea(props) {
 
 export function FormBtn(props) {
   return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
+    <button
+      {...props}
+      style={{
+        float: "right",
+        margin: 10,
+        borderRadius: "5px",
+        border: "1px #2a878c solid",
+        backgroundColor: "black",
+        opacity: "0.8",
+        color: "#2a878c"
+      }}
+      // className="btn btn-success"
+      outline
+      color="secondary"
+    >
       {props.children}
     </button>
   );

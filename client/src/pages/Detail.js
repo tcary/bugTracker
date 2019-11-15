@@ -74,10 +74,12 @@ class Detail extends Component {
     console.log("Check it out ", this.state);
     // console.log(this.state);
     return (
-      <Container style={{ width: "80%" }}>
+      <Container style={{ width: "70%" }}>
         <Row>
           <Col size="md-2">
-            <Link to="/projects">← Back to Projects</Link>
+            <Link to="/projects" style={{ margin: "20px" }}>
+              ← Back to Projects
+            </Link>
           </Col>
         </Row>
         <Row>
@@ -97,7 +99,7 @@ class Detail extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3 style={{ color: "white" }}>No Results to Display</h3>
             )}
           </Col>
           <Col size="md-6">
