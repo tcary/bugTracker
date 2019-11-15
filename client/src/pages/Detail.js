@@ -130,24 +130,6 @@ class Detail extends Component {
               </form>
             </ToggleDisplay>
           </Col>
-          {/* <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Description Of The Issue</h1>
-            </Jumbotron>
-            {this.state.issues.length ? (
-              <List>
-                {this.state.issues.map(issue => (
-                  <ListItem key={issue._id}>
-                    <strong>
-                      {issue.details}
-                    </strong>
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-                <h3>No Results to Display</h3>
-              )}
-          </Col> */}
         </Row>
       </Container>
     );
