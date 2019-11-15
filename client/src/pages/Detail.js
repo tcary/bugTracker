@@ -53,7 +53,7 @@ class Detail extends Component {
   };
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    // event.preventDefault();
     this.setState({ show: !this.state.show });
     if (this.state.issue && this.state.details && this.state.show) {
       API.saveIssue({
@@ -93,7 +93,7 @@ class Detail extends Component {
               <h1>Issues</h1>
             </Jumbotron>
 
-        {/* this.filteredIssues below call the function that sets the state for filteredIssue*/}
+            {/* this.filteredIssues below call the function that sets the state for filteredIssue*/}
             <Dropdown filteredIssues={this.filteredIssues} />
 
             {this.state.filteredIssues.length ? (
