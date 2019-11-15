@@ -15,6 +15,7 @@ class Detail extends Component {
     super(props);
     this.state = {
       issues: [],
+      filteredIssues: [], // added to make a copy of issues
       issue: "",
       details: "",
       projectId: this.props.match.params,
@@ -22,15 +23,7 @@ class Detail extends Component {
     };
   }
 
-  // Add code to get the project with an _id equal to the id in the route param
-  // e.g. http://localhost:3000/projects/:id
-  // The project id for this route can be accessed using this.props.match.params.id
-
-  // componentDidMount() {
-  //   API.getProject(this.props.match.params.id)
-  //     .then(res => this.setState({ project: res.data }))
-  //     .catch(err => console.log(err));
-  // }
+  // calling the database for all issues associated with one project
   componentDidMount() {
     this.loadIssues();
   }
@@ -38,7 +31,10 @@ class Detail extends Component {
     // console.log(res);
     API.getProject(this.props.match.params.id)
       .then(res =>
-        this.setState({ issues: res.data.issues, issue: "", details: "" })
+        this.setState({
+          issues: res.data.issues,
+          filteredIssues: res.data.issues
+        })
       )
       .catch(err => console.log(err));
   };
@@ -57,7 +53,7 @@ class Detail extends Component {
   };
 
   handleFormSubmit = event => {
-    //event.preventDefault();
+    event.preventDefault();
     this.setState({ show: !this.state.show });
     if (this.state.issue && this.state.details && this.state.show) {
       API.saveIssue({
@@ -70,10 +66,18 @@ class Detail extends Component {
     }
   };
 
+  // function to sort the filteredIssues based on boolean
+  filteredIssues = type => {
+    if (type === "resolved") {
+      const issues = this.state.issues.filter(issue => issue.resolved);
+      this.setState({ filteredIssues: issues });
+    } else {
+      const issues = this.state.issues.filter(issue => !issue.resolved);
+      this.setState({ filteredIssues: issues });
+    }
+  };
+
   render() {
-    // console.log(this.state.issues);
-    console.log("Check it out ", this.state);
-    // console.log(this.state);
     return (
       <Container style={{ width: "70%" }}>
         <Row>
@@ -89,11 +93,12 @@ class Detail extends Component {
               <h1>Issues</h1>
             </Jumbotron>
 
-            <Dropdown />
+        {/* this.filteredIssues below call the function that sets the state for filteredIssue*/}
+            <Dropdown filteredIssues={this.filteredIssues} />
 
-            {this.state.issues.length ? (
+            {this.state.filteredIssues.length ? (
               <List>
-                {this.state.issues.map(issue => (
+                {this.state.filteredIssues.map(issue => (
                   <ListItem key={issue._id}>
                     <Link to={"/issues/details/" + issue._id}>
                       <strong>{issue.issue}</strong>
@@ -108,7 +113,6 @@ class Detail extends Component {
                         <strong></strong>
                       )}
                     </Link>
-                    {/* <DeleteBtn onClick={() => this.deleteIssue(issue._id)} /> */}
                   </ListItem>
                 ))}
               </List>
@@ -117,10 +121,7 @@ class Detail extends Component {
             )}
           </Col>
           <Col size="md-6">
-            <FormBtn
-              // disabled={!(this.state.issue && this.state.details)}
-              onClick={() => this.handleFormSubmit()}
-            >
+            <FormBtn onClick={() => this.handleFormSubmit()}>
               + Submit an Issue
             </FormBtn>
             <ToggleDisplay show={this.state.show}>
@@ -130,14 +131,12 @@ class Detail extends Component {
                   onChange={this.handleInputChange}
                   name="issue"
                   placeholder="Name Of The Issue (required)"
-                  // projectId={this.props.match.params.id}
                 />
                 <TextArea
                   value={this.state.details}
                   onChange={this.handleInputChange}
                   name="details"
                   placeholder="Description (required)"
-                  // projectId={this.props.match.params.id}
                 />
               </form>
             </ToggleDisplay>

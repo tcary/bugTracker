@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import "./style.scss";
+import { ListItem } from "../List";
 import {
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import { ListItem } from "../List";
 
-const Dropdown = props => {
+const Dropdown = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
   return (
     <ListItem className="drpDwn">
-      <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+      <ButtonDropdown id="dropped" isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle caret>Sort By</DropdownToggle>
         <DropdownMenu>
-          <DropdownItem>Resolved</DropdownItem>
-          <DropdownItem>Unresolved</DropdownItem>
+          <DropdownItem onClick={() => props.filteredIssues("resolved")}>Resolved</DropdownItem>
+          <DropdownItem onClick={() => props.filteredIssues("unresolved")}>Unresolved</DropdownItem>
         </DropdownMenu>
       </ButtonDropdown>
     </ListItem>
