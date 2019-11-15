@@ -6,11 +6,11 @@ const IssueDetails = props => {
   return (
     <>
       <Card>
-        <h2>Name: {props.issue}</h2>
+        <h2>{props.issue}</h2>
       </Card>
-      <Card>
-        <h4>Details: {props.details}</h4>
-      </Card>
+      
+      <textarea className="form-control" id="exampleFormControlTextarea1" rows="3">{props.details}</textarea>
+      
     </>
   );
 };
