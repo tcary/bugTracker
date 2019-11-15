@@ -8,6 +8,7 @@ import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import ToggleDisplay from "react-toggle-display";
+import Dropdown from "../components/Dropdown";
 
 class Detail extends Component {
   constructor(props) {
@@ -17,8 +18,7 @@ class Detail extends Component {
       issue: "",
       details: "",
       projectId: this.props.match.params,
-      show: false,
-      
+      show: false
     };
   }
 
@@ -88,13 +88,25 @@ class Detail extends Component {
             <Jumbotron>
               <h1>Issues</h1>
             </Jumbotron>
+
+            <Dropdown />
+
             {this.state.issues.length ? (
               <List>
                 {this.state.issues.map(issue => (
                   <ListItem key={issue._id}>
                     <Link to={"/issues/details/" + issue._id}>
-                      <strong>{issue.issue}</strong> 
-                      {issue.resolved ? (<strong style={{"float": "right"}}><span> Resolved </span> <DeleteBtn onClick={() => this.deleteIssue(issue._id)} /></strong>) : (<strong></strong>)}
+                      <strong>{issue.issue}</strong>
+                      {issue.resolved ? (
+                        <strong style={{ float: "right" }}>
+                          <span> Resolved </span>{" "}
+                          <DeleteBtn
+                            onClick={() => this.deleteIssue(issue._id)}
+                          />
+                        </strong>
+                      ) : (
+                        <strong></strong>
+                      )}
                     </Link>
                     {/* <DeleteBtn onClick={() => this.deleteIssue(issue._id)} /> */}
                   </ListItem>
