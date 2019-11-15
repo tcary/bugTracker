@@ -17,7 +17,8 @@ class Detail extends Component {
       issue: "",
       details: "",
       projectId: this.props.match.params,
-      show: false
+      show: false,
+      
     };
   }
 
@@ -92,9 +93,10 @@ class Detail extends Component {
                 {this.state.issues.map(issue => (
                   <ListItem key={issue._id}>
                     <Link to={"/issues/details/" + issue._id}>
-                      <strong>{issue.issue}</strong>
+                      <strong>{issue.issue}</strong> 
+                      {issue.resolved ? (<strong style={{"float": "right"}}><span> Resolved </span> <DeleteBtn onClick={() => this.deleteIssue(issue._id)} /></strong>) : (<strong></strong>)}
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteIssue(issue._id)} />
+                    {/* <DeleteBtn onClick={() => this.deleteIssue(issue._id)} /> */}
                   </ListItem>
                 ))}
               </List>
@@ -116,14 +118,14 @@ class Detail extends Component {
                   onChange={this.handleInputChange}
                   name="issue"
                   placeholder="Name Of The Issue (required)"
-                  projectId={this.props.match.params.id}
+                  // projectId={this.props.match.params.id}
                 />
                 <TextArea
                   value={this.state.details}
                   onChange={this.handleInputChange}
                   name="details"
                   placeholder="Description (required)"
-                  projectId={this.props.match.params.id}
+                  // projectId={this.props.match.params.id}
                 />
               </form>
             </ToggleDisplay>
