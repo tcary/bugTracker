@@ -1,5 +1,4 @@
 module.exports = {
-  Project: require("./Project"),
+  Project: require("./project"),
   Issue: require("./Issue")
 };
-
