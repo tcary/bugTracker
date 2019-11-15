@@ -8,6 +8,7 @@ import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import ToggleDisplay from "react-toggle-display";
+import Dropdown from "../components/Dropdown";
 
 class Detail extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class Detail extends Component {
       issue: "",
       details: "",
       projectId: this.props.match.params,
-      show: false
+      show: false,
+      resolved: false
     };
   }
 
@@ -87,6 +89,9 @@ class Detail extends Component {
             <Jumbotron>
               <h1>Issues</h1>
             </Jumbotron>
+
+            <Dropdown />
+
             {this.state.issues.length ? (
               <List>
                 {this.state.issues.map(issue => (
