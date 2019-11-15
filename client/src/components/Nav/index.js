@@ -8,7 +8,7 @@ function Nav(props) {
       <a className="navbar-brand" href="/">
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNA3G1EmSn4ohjntJkZb6Yy8RJjqbNPFJbJDUt13QdoqD9fNi7IA&s" width="30" height="30" className="d-inline-block align-top" alt="company logo image of a bug"></img> */}
         {/* React Debugger */}
-        <h1>React Debugger</h1>
+        <h1>Bug Tracker </h1>
       </a>
 
       <div className="bug-container bug-container--one">

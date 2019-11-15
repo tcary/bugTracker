@@ -30,6 +30,10 @@
   opacity: 0.8;
 }
 
+.list-group-item:first-child {
+  margin-top: 0;
+}
+
 .list-overflow-container li * {
   cursor: pointer;
 }
