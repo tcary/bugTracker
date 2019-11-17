@@ -9,7 +9,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import ToggleDisplay from "react-toggle-display";
 import Dropdown from "../components/Dropdown";
-import Search from "../components/SearchBar"
+import SearchBar from "../components/SearchBar"
 
 class Detail extends Component {
   constructor(props) {
@@ -29,8 +29,9 @@ class Detail extends Component {
     this.loadIssues();
   }
   loadIssues = () => {
-    // console.log(res);
+
     API.getProject(this.props.match.params.id)
+    // .then(res => console.log("in detail", res.data.issues))
     .then(res =>
         this.setState({
           issues: res.data.issues,
@@ -93,7 +94,8 @@ class Detail extends Component {
             <Jumbotron>
               <h1>Issues</h1>
             </Jumbotron>
-          
+
+            <SearchBar />
             {/* Search bar  */}
             {/* <form>
               <label htmlFor="issue-choice">Issue name:</label>
