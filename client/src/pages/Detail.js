@@ -9,6 +9,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import ToggleDisplay from "react-toggle-display";
 import Dropdown from "../components/Dropdown";
+import SearchBar from "../components/SearchBar"
 
 class Detail extends Component {
   constructor(props) {
@@ -28,9 +29,10 @@ class Detail extends Component {
     this.loadIssues();
   }
   loadIssues = () => {
-    // console.log(res);
+
     API.getProject(this.props.match.params.id)
-      .then(res =>
+    // .then(res => console.log("in detail", res.data.issues))
+    .then(res =>
         this.setState({
           issues: res.data.issues,
           filteredIssues: res.data.issues
@@ -76,8 +78,8 @@ class Detail extends Component {
       this.setState({ filteredIssues: issues });
     }
   };
-
   render() {
+   
     return (
       <Container style={{ width: "70%" }}>
         <Row>
@@ -93,20 +95,49 @@ class Detail extends Component {
               <h1>Issues</h1>
             </Jumbotron>
 
+            <SearchBar />
+            {/* Search bar  */}
+            {/* <form>
+              <label htmlFor="issue-choice">Issue name:</label>
+                <input
+                  list="issues"
+                  id="issue-choice"
+                  name="issue-choice"
+                  className="form-control"
+                  placeholder="Search Issues"
+                />
+              <datalist id="issues">
+              {this.state.filteredIssues.map(issue => (
+                    <option value={issue} key={issue._id}/>
+                  ))}
+              </datalist>
+              <button type="submit" className="btn btn-dark btn-block mt-2">
+                Search
+              </button>
+            </form> */}
+           
+           {/* Dropdown Button Component */}
             {/* this.filteredIssues below call the function that sets the state for filteredIssue*/}
             <Dropdown filteredIssues={this.filteredIssues} />
 
+            {/* list of issues */}
             {this.state.filteredIssues.length ? (
               <List>
                 {this.state.filteredIssues.map(issue => (
-                  <ListItem key={issue._id}>
-                    <Link to={"/issues/details/" + issue._id}>
+                  <ListItem 
+                    key={issue._id}>
+                    <Link 
+                      to={"/issues/details/" + issue._id}>
                       <strong>{issue.issue}</strong>
+                      
                       {issue.resolved ? (
-                        <strong style={{ float: "right" }}>
+                        <strong 
+                          style={{ float: "right" }}>
                           <span> Resolved </span>{" "}
+                          
                           <DeleteBtn
                             onClick={() => this.deleteIssue(issue._id)}
+                          
                           />
                         </strong>
                       ) : (
@@ -120,6 +151,7 @@ class Detail extends Component {
               <h3 style={{ color: "white" }}>No Results to Display</h3>
             )}
           </Col>
+
           <Col size="md-6">
             <FormBtn onClick={() => this.handleFormSubmit()}>
               + Submit an Issue

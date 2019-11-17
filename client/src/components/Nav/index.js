@@ -1,15 +1,17 @@
 import React from "react";
 import { Button } from "reactstrap";
 import "./style.scss";
+import { Link, NavLink } from "react-router-dom";
 
-function Nav(props) {
+function Nav() {
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href="/">
+      <Link className="navbar-brand" to="/">
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNA3G1EmSn4ohjntJkZb6Yy8RJjqbNPFJbJDUt13QdoqD9fNi7IA&s" width="30" height="30" className="d-inline-block align-top" alt="company logo image of a bug"></img> */}
         {/* React Debugger */}
         <h1>Bug Tracker </h1>
-      </a>
+      </Link>
 
       <div className="bug-container bug-container--one">
         <div className="bug bug--one"></div>
@@ -33,10 +35,11 @@ function Nav(props) {
         <Button className="button" outline color="secondary">
           Sign Up
         </Button>{" "}
-        <img
+        <img 
           className="search"
           src="./img/magnifying-glass.png"
           style={{
+            opacity: window.location.pathname === "/" ? 0 : 1,
             // float: "right",
             width: "30px",
             height: "30px",

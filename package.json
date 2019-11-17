@@ -31,6 +31,7 @@
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
     "react-toggle-display": "^2.2.0",
     "styled-components": "^4.4.1"
   }
