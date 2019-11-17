@@ -32,7 +32,7 @@ class EditDetail extends Component {
 
   updateIssue = id => {
     API.updateIssue(id)
-      .then(res => this.setState({}))
+      // .then(res => this.setState({}))
       .then(res => this.loadIssues())
       .catch(err => console.log(err));
   };
@@ -93,10 +93,10 @@ class EditDetail extends Component {
 
                 <UnresolvedBtn
                   onClick={() => {
-                    this.updateIssue(this.state.issue._id);
+                    // this.updateIssue(this.state.issue._id);
                     history.goBack();
                   }}
-                />
+                ></UnresolvedBtn>
               </>
             ) : (
               <h3>No Results to Display</h3>
