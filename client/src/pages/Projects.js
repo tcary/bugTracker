@@ -7,6 +7,7 @@ import { Col, Row, Container } from "reactstrap";
 import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
 import ToggleDisplay from "react-toggle-display";
+import SearchBar from "../components/SearchBar"
 // import Nav from "../components/Nav";
 
 class Projects extends Component {
@@ -104,6 +105,9 @@ class Projects extends Component {
               <Jumbotron>
                 <h1>Projects</h1>
               </Jumbotron>
+              
+              {/* SearchBar */}
+              <SearchBar />
               {this.state.projects.length ? (
                 <List>
                   {this.state.projects.map(project => (
