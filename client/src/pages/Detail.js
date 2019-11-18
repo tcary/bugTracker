@@ -9,7 +9,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import ToggleDisplay from "react-toggle-display";
 import Dropdown from "../components/Dropdown";
-import SearchBar from "../components/SearchBar"
+
 
 class Detail extends Component {
   constructor(props) {
@@ -95,7 +95,7 @@ class Detail extends Component {
               <h1>Issues</h1>
             </Jumbotron>
 
-            <SearchBar />
+            
             {/* Search bar  */}
             {/* <form>
               <label htmlFor="issue-choice">Issue name:</label>
