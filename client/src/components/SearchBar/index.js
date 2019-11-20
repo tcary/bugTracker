@@ -8,38 +8,49 @@ class SearchBar extends Component {
         selectedIssue: "",
         selectedId: "" 
     }   
-
     componentDidMount () {
         API.getIssues()
-            // .then(res => console.log("in search", res.data))
-            .then(res => {
-                const issueName = res.data.map(item => item.issue)
-                const issueId = res.data.map(item => item._id)
-                this.setState({
-                    listOfIssues: issueName,
-                    issueId: issueId
-                })
-                // console.log("id", issueId)
-                // console.log("name", issueName)
+        // .then(res => console.log("in search", res.data))
+        .then(res => {
+            
+            const data = res.data
+        this.setState({
+            listOfIssues: data,
+        })
+        
+        
+        // .then(res => {
+            //     const issueName = res.data.map(item => item.issue)
+            //     const issueArray = res.data.map(item => res._id)
+            //     this.setState({
+                //         listOfIssues: issueName,
+                //         issueId: issueId
+                //     })
+                //     // console.log("id", issueId)
+                //     // console.log("name", issueName)
+                
+                // })
                 
             })
             .catch(err => console.log(err))
             
-    }
+        }
+
+
     handleInputChange = event => {
-        const { name, value } = event.target;
+        const { name, value, id } = event.target;
         this.setState({ 
             selectedIssue: value,
-            // selectedId: value 
+            selectedId: id 
         });
       };
 
       handleFormSubmit = event => {
         event.preventDefault();
-        const id =  
+        // const id = listOfIssues.filter(selectedIssue => )
         
         
-        API.getIssue(id)
+        API.getIssue(this.state.selectedId)
             .then(res => this.setState({ 
                 searchedBreed: this.state.selectedBreed,
                 selectedId: this.state.selectedId
@@ -55,16 +66,23 @@ class SearchBar extends Component {
                 <label htmlFor="issue-choice">Issue name:</label>
                     <input
                         list="issues"
-                        id="issue-choice"
                         name="issue-choice"
                         className="form-control"
                         placeholder="Search Issues"
                         value={this.state.selectedIssue }
+                        id={this.state.selectedId}
+                        // id={this.state._id}
                         onChange={this.handleInputChange}
-                    />
+                        />
                     <datalist id="issues">
-                        {this.state.listOfIssues.map(issue => (
-                        <option value={issue} key={issue}/>
+                        {this.state.listOfIssues.map((issue) => (
+                            // console.log(id),
+                            // console.log(issue),
+                            <option 
+                            value={issue.issue} 
+                            key={issue._id}
+                            id={issue._id}    
+                        />
                         ))}
                     </datalist>
                 <button 
