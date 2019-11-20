@@ -4,31 +4,45 @@ import API from "../../utils/API";
 class SearchBar extends Component {
     state = {
         listOfIssues: [],
-        selectedIssue: "" 
+        issueId: "",
+        selectedIssue: "",
+        selectedId: "" 
     }   
 
     componentDidMount () {
         API.getIssues()
             // .then(res => console.log("in search", res.data))
             .then(res => {
-               const issueArray = res.data.map(item => item.issue)
-            //    console.log("issueArray", issueArray) 
-               this.setState({listOfIssues: issueArray})
+                const issueName = res.data.map(item => item.issue)
+                const issueId = res.data.map(item => item._id)
+                this.setState({
+                    listOfIssues: issueName,
+                    issueId: issueId
+                })
+                // console.log("id", issueId)
+                // console.log("name", issueName)
+                
             })
             .catch(err => console.log(err))
             
     }
     handleInputChange = event => {
         const { name, value } = event.target;
-        this.setState({ [name]: value });
+        this.setState({ 
+            selectedIssue: value,
+            // selectedId: value 
+        });
       };
 
       handleFormSubmit = event => {
         event.preventDefault();
-        API.getIssue(this.state.selectedIssue)
+        const id =  
+        
+        
+        API.getIssue(id)
             .then(res => this.setState({ 
                 searchedBreed: this.state.selectedBreed,
-                selectedBreed: ""
+                selectedId: this.state.selectedId
             }))
             .catch(err => console.log(err));
     }
@@ -45,16 +59,22 @@ class SearchBar extends Component {
                         name="issue-choice"
                         className="form-control"
                         placeholder="Search Issues"
+                        value={this.state.selectedIssue }
                         onChange={this.handleInputChange}
                     />
                     <datalist id="issues">
                         {this.state.listOfIssues.map(issue => (
-                        <option value={issue} key={issue._id}/>
+                        <option value={issue} key={issue}/>
                         ))}
                     </datalist>
-               <button id="btn" type="submit" className="btn btn-dark btn-block mt-2">
-                 Search
-                   </button>
+                <button 
+                    id="btn" 
+                    onClick={() => this.handleFormSubmit(this.state.issueId)}
+                    type="submit" 
+                    className="btn btn-dark btn-block mt-2"
+                    >
+                    Search
+                </button>
              </form> 
         )
     }
