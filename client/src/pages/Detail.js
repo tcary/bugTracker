@@ -94,27 +94,6 @@ class Detail extends Component {
             <Jumbotron>
               <h1>Issues</h1>
             </Jumbotron>
-
-            
-            {/* Search bar  */}
-            {/* <form>
-              <label htmlFor="issue-choice">Issue name:</label>
-                <input
-                  list="issues"
-                  id="issue-choice"
-                  name="issue-choice"
-                  className="form-control"
-                  placeholder="Search Issues"
-                />
-              <datalist id="issues">
-              {this.state.filteredIssues.map(issue => (
-                    <option value={issue} key={issue._id}/>
-                  ))}
-              </datalist>
-              <button type="submit" className="btn btn-dark btn-block mt-2">
-                Search
-              </button>
-            </form> */}
            
            {/* Dropdown Button Component */}
             {/* this.filteredIssues below call the function that sets the state for filteredIssue*/}
@@ -153,24 +132,27 @@ class Detail extends Component {
           </Col>
 
           <Col size="md-6">
-            <FormBtn onClick={() => this.handleFormSubmit()}>
+            <FormBtn 
+              onClick={() => this.handleFormSubmit()}>
               + Submit an Issue
             </FormBtn>
-            <ToggleDisplay show={this.state.show}>
-              <form>
-                <Input
-                  value={this.state.issue}
-                  onChange={this.handleInputChange}
-                  name="issue"
-                  placeholder="Name Of The Issue (required)"
-                />
-                <TextArea
-                  value={this.state.details}
-                  onChange={this.handleInputChange}
-                  name="details"
-                  placeholder="Description (required)"
-                />
-              </form>
+            
+            <ToggleDisplay 
+              show={this.state.show}>
+                <form>
+                  <Input
+                    value={this.state.issue}
+                    onChange={this.handleInputChange}
+                    name="issue"
+                    placeholder="Name Of The Issue (required)"
+                  />
+                  <TextArea
+                    value={this.state.details}
+                    onChange={this.handleInputChange}
+                    name="details"
+                    placeholder="Description (required)"
+                  />
+                </form>
             </ToggleDisplay>
           </Col>
         </Row>
