@@ -34,9 +34,16 @@ class SearchBar extends Component {
 
   handleInputChange = event => {
     const { name, value, id } = event.target;
+    console.log(
+      event.target.nextSibling
+        .querySelector(`option[value='${value}']`)
+        .getAttribute("id")
+    );
     this.setState({
       selectedIssue: value,
-      selectedId: id
+      selectedId: event.target.nextSibling
+        .querySelector(`option[value='${value}']`)
+        .getAttribute("id")
     });
   };
 
@@ -71,7 +78,7 @@ class SearchBar extends Component {
         />
         <datalist id="issues">
           {this.state.listOfIssues.map(issue => (
-            // console.log(id),
+            // console.log(issue._id),
             // console.log(issue),
             <option value={issue.issue} key={issue._id} id={issue._id} />
           ))}
