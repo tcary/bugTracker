@@ -58,7 +58,7 @@ class SearchBar extends Component {
           selectedId: this.state.selectedId
         })
       )
-      .catch(err => console.log(err));
+      
   };
 
   render() {
