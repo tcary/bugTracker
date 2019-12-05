@@ -4,7 +4,7 @@ import IssueDetails from "../components/Issue/IssueDetails";
 import { Col, Row, Container } from "reactstrap";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ResolvedBtn from "../components/ResolvedBtn";
 import UnresolvedBtn from "../components/UnresolvedBtn";
 import { withRouter } from "react-router";
