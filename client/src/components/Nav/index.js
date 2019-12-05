@@ -1,10 +1,9 @@
 import React from "react";
 import { Button } from "reactstrap";
 import "./style.scss";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Nav() {
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <Link className="navbar-brand" to="/">
@@ -35,8 +34,9 @@ function Nav() {
         <Button className="button" outline color="secondary">
           Sign Up
         </Button>{" "}
-        <img 
+        <img
           className="search"
+          alt="Picture of magnifying glass"
           src="./img/magnifying-glass.png"
           style={{
             opacity: window.location.pathname === "/" ? 0 : 1,
