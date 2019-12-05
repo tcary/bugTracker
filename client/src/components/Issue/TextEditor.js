@@ -1,5 +1,5 @@
 import React from "react";
-import { Editor, EditorState, RichUtils } from "draft-js";
+import { Editor, EditorState, RichUtils, ContentState } from "draft-js";
 import BlockStyleToolbar, { getBlockStyle } from "./blockStyles/BlockStyleToolbar";
 import "./editorCSS/style.css"
 
@@ -7,9 +7,12 @@ class TextEditor extends React.Component {
   
   constructor(props) {
     super(props);
-    this.state = {
-      editorState: EditorState.createEmpty()
-    };
+    // this.state = {
+    //   editorState: EditorState.createEmpty()
+    // };
+      this.state = {
+        editorState: EditorState.createWithContent()
+      };
   }
   toggleBlockType = blockType => {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
@@ -58,7 +61,8 @@ class TextEditor extends React.Component {
       <div className="editorContainer">
         <div className="toolbar">
           <BlockStyleToolbar
-            editorState={this.state.editorState}
+            // editorState={this.state.editorState}
+            editorState={EditorState.createWithContent(ContentState.createFromText('Hello'))}
             onToggle={this.toggleBlockType}
           />
           <button className="styleButton" onClick={this.onUnderlineClick}>
