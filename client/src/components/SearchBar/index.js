@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import { Redirect } from "react-router-dom";
 
 class SearchBar extends Component {
   state = {
     listOfIssues: [],
     issueId: "",
     selectedIssue: "",
-    selectedId: ""
+    selectedId: "",
+    redirect: false
   };
   componentDidMount() {
     API.getIssues()
@@ -34,11 +36,11 @@ class SearchBar extends Component {
 
   handleInputChange = event => {
     const { name, value, id } = event.target;
-    console.log(
-      event.target.nextSibling
-        .querySelector(`option[value='${value}']`)
-        .getAttribute("id")
-    );
+    // console.log(
+    //   event.target.nextSibling
+    //     .querySelector(`option[value='${value}']`)
+    //     .getAttribute("id")
+    // );
     this.setState({
       selectedIssue: value,
       selectedId: event.target.nextSibling
@@ -49,19 +51,22 @@ class SearchBar extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    // const id = listOfIssues.filter(selectedIssue => )
-
-    API.getIssue(this.state.selectedId)
-      .then(res =>
-        this.setState({
-          searchedBreed: this.state.selectedBreed,
-          selectedId: this.state.selectedId
-        })
-      )
-      .catch(err => console.log(err));
+    if (this.state.selectedId) {
+      this.setState({
+        redirect: true
+      });
+    }
   };
 
+  // renderRedirect = () => {
+  // };
   render() {
+    // if (this.state.selectedId) {
+    //   return <Redirect to={"/issues/details/" + this.state.selectedId} />;
+    // }
+    if (this.state.redirect) {
+      return <Redirect to={"/issues/details/" + this.state.selectedId} />;
+    }
     return (
       // <h3>Where are you?</h3>
       <form>
@@ -85,7 +90,7 @@ class SearchBar extends Component {
         </datalist>
         <button
           id="btn"
-          onClick={() => this.handleFormSubmit(this.state.issueId)}
+          onClick={() => this.handleFormSubmit}
           type="submit"
           className="btn btn-dark btn-block mt-2"
         >
