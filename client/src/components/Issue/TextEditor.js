@@ -1,15 +1,25 @@
 import React from "react";
-import { Editor, EditorState, RichUtils } from "draft-js";
+import { Editor, EditorState, RichUtils, ContentState, convertFromRaw } from "draft-js";
 import BlockStyleToolbar, { getBlockStyle } from "./blockStyles/BlockStyleToolbar";
 import "./editorCSS/style.css"
+import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 
 class TextEditor extends React.Component {
   
   constructor(props) {
     super(props);
+    // the code below will load an empty text Editor
     this.state = {
       editorState: EditorState.createEmpty()
     };
+    
+    // the code below is trying to load the content from the Database. 
+    // const content = convertFromRaw(JSON.parse(props.details));
+    // const editorState = EditorState.createWithContent(content)
+    
+    // this.state = {
+    //     editorState: EditorState
+    //   };
   }
   toggleBlockType = blockType => {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
@@ -58,7 +68,8 @@ class TextEditor extends React.Component {
       <div className="editorContainer">
         <div className="toolbar">
           <BlockStyleToolbar
-            editorState={this.state.editorState}
+            // editorState={this.state.editorState}
+            editorState={EditorState.createWithContent(ContentState.createFromText('Hello'))}
             onToggle={this.toggleBlockType}
           />
           <button className="styleButton" onClick={this.onUnderlineClick}>
