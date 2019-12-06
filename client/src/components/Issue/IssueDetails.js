@@ -9,8 +9,8 @@ const IssueDetails = props => {
       <Card>
         <h2>{props.issue}</h2>
       </Card>
-     
-      {/* <textarea className="form-control" id="exampleFormControlTextarea1" rows="3">{props.details}</textarea> */}
+      
+      <textarea className="form-control" id="exampleFormControlTextarea1" rows="3">{props.details}</textarea>
       
     </>
   );

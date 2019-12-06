@@ -1,5 +1,5 @@
 import React from "react";
-import { Editor, EditorState, RichUtils, ContentState, convertFromRaw } from "draft-js";
+// import { Editor, EditorState, RichUtils, ContentState, convertFromRaw, convertToRaw } from "draft-js";
 import BlockStyleToolbar, { getBlockStyle } from "./blockStyles/BlockStyleToolbar";
 import "./editorCSS/style.css"
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
@@ -10,17 +10,31 @@ class TextEditor extends React.Component {
     super(props);
     // the code below will load an empty text Editor
     this.state = {
-      editorState: EditorState.createEmpty()
+      // editorState: EditorState.createEmpty()
+      editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(props.details)))
+      // rawContent: props.details
     };
     
     // the code below is trying to load the content from the Database. 
-    // const content = convertFromRaw(JSON.parse(props.details));
+    // const content = props.details;
     // const editorState = EditorState.createWithContent(content)
     
-    // this.state = {
+    // this.state = { 
     //     editorState: EditorState
     //   };
+
   }
+  // componentDidMount(props) {
+  //  let rawContent = props.details;
+
+  //     if (rawContent) {
+  //       this.setState({ editorState: EditorState.createWithContent(convertFromRaw(rawContent)) })
+  //     } else {
+  //       this.setState({ editorState: EditorState.createEmpty() });
+  //     }
+  // }
+
+  
   toggleBlockType = blockType => {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
   };
@@ -66,6 +80,7 @@ class TextEditor extends React.Component {
   };
 
   render() {
+
     return (
       <div className="editorContainer">
         <div className="toolbar">

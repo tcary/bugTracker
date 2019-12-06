@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import ResolvedBtn from "../components/ResolvedBtn";
 import UnresolvedBtn from "../components/UnresolvedBtn";
 import { withRouter } from "react-router";
-import TextEditor from "../components/Issue/TextEditor";
 
 class EditDetail extends Component {
   state = {
@@ -77,12 +76,6 @@ class EditDetail extends Component {
             {this.state.issue.details ? (
               <>
                 <IssueDetails
-                  key={this.state.issue.id}
-                  issue={this.state.issue.issue}
-                  details={this.state.issue.details}
-                  projectId={this.state.issue.projectId}
-                />
-                <TextEditor
                   key={this.state.issue.id}
                   issue={this.state.issue.issue}
                   details={this.state.issue.details}
