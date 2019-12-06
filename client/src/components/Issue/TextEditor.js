@@ -1,28 +1,28 @@
 import React from "react";
-// import { Editor, EditorState, RichUtils, ContentState, convertFromRaw, convertToRaw } from "draft-js";
+import { Editor,EditorState, RichUtils, ContentState, convertFromRaw } from "draft-js";
 import BlockStyleToolbar, { getBlockStyle } from "./blockStyles/BlockStyleToolbar";
-import "./editorCSS/style.css"
+import "./editorCSS/style.css";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 
 class TextEditor extends React.Component {
-  
   constructor(props) {
     super(props);
     // the code below will load an empty text Editor
     this.state = {
       // editorState: EditorState.createEmpty()
-      editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(props.details)))
+      editorState: EditorState.createWithContent(
+        convertFromRaw(JSON.parse(props.details))
+      )
       // rawContent: props.details
     };
-    
-    // the code below is trying to load the content from the Database. 
-    // const content = props.details;
+
+    // the code below is trying to load the content from the Database.
+    // const content = convertFromRaw(JSON.parse(props.details));
     // const editorState = EditorState.createWithContent(content)
-    
-    // this.state = { 
+
+    // this.state = {
     //     editorState: EditorState
     //   };
-
   }
   // componentDidMount(props) {
   //  let rawContent = props.details;
@@ -34,24 +34,23 @@ class TextEditor extends React.Component {
   //     }
   // }
 
-  
   toggleBlockType = blockType => {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     const contentState = editorState.getCurrentContent();
-    console.log('content state', convertToRaw(contentState));
+    console.log("content state", convertToRaw(contentState));
     this.setState({
-      editorState,
+      editorState
     });
-  }
+  };
 
   handleKeyCommand = command => {
     const newState = RichUtils.handleKeyCommand(
       this.state.editorState,
       command
-    );  
+    );
     if (newState) {
       this.onChange(newState);
       return "handled";
@@ -80,13 +79,14 @@ class TextEditor extends React.Component {
   };
 
   render() {
-
     return (
       <div className="editorContainer">
         <div className="toolbar">
           <BlockStyleToolbar
             // editorState={this.state.editorState}
-            editorState={EditorState.createWithContent(ContentState.createFromText('Hello'))}
+            editorState={EditorState.createWithContent(
+              ContentState.createFromText("Hello")
+            )}
             onToggle={this.toggleBlockType}
           />
           <button className="styleButton" onClick={this.onUnderlineClick}>
@@ -100,14 +100,14 @@ class TextEditor extends React.Component {
           </button>
         </div>
 
-        <div className="editors">
-          <Editor
+        {/* <div className="editors"> */}
+        {/* <Editor
             blockStyleFn={getBlockStyle}
             editorState={this.state.editorState}
             handleKeyCommand={this.handleKeyCommand}
             onChange={this.onChange}
-          />
-        </div>
+          /> */}
+        {/* </div> */}
       </div>
     );
   }

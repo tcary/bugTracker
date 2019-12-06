@@ -4,87 +4,82 @@ import BlockStyleButton from "./BlockStyleButton";
 import HeaderStyleDropdown from "./HeaderStyleDropdown";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faListUl,
-  faListOl,
-  faCode,
-} from "@fortawesome/free-solid-svg-icons";
-
+import { faListUl, faListOl, faCode } from "@fortawesome/free-solid-svg-icons";
 
 export const BLOCK_TYPES = [
-	{ 
-		label: " “ ” ", 
-		style: "blockquote",
-		key: 12 
-	},
-	{ 
-		label: <FontAwesomeIcon icon={faListUl} />, 
-		style: "unordered-list-item",
-		key: 13
-	},		
-	{ 
-		label: <FontAwesomeIcon icon={faListOl} />, 
-		style: "ordered-list-item",
-		key: 14 
-	},
-	{ 
-		label: <FontAwesomeIcon icon={faCode} />, 
-		style: "code-block",
-		key: 15 
-	}
+  {
+    label: " “ ” ",
+    style: "blockquote",
+    key: 12
+  },
+  {
+    label: <FontAwesomeIcon icon={faListUl} />,
+    style: "unordered-list-item",
+    key: 13
+  },
+  {
+    label: <FontAwesomeIcon icon={faListOl} />,
+    style: "ordered-list-item",
+    key: 14
+  },
+  {
+    label: <FontAwesomeIcon icon={faCode} />,
+    style: "code-block",
+    key: 15
+  }
 ];
 
 export const HEADER_TYPES = [
-	{ label: "(None)", style: "unstyled" },
-	{ label: "H1", style: "header-one" },
-	{ label: "H2", style: "header-two" },
-	{ label: "H3", style: "header-three" },
-	{ label: "H4", style: "header-four" },
-	{ label: "H5", style: "header-five" },
-	{ label: "H6", style: "header-six" }
+  { label: "(None) selected", style: "unstyled" },
+  { label: "H1", style: "header-one" },
+  { label: "H2", style: "header-two" },
+  { label: "H3", style: "header-three" },
+  { label: "H4", style: "header-four" },
+  { label: "H5", style: "header-five" },
+  { label: "H6", style: "header-six" }
 ];
 
 export function getBlockStyle(block) {
-	switch (block.getType()) {
-		case "blockquote":
-			return "RichEditor-blockquote";
-		default:
-			return null;
-	}
+  switch (block.getType()) {
+    case "blockquote":
+      return "RichEditor-blockquote";
+    default:
+      return null;
+  }
 }
 
 class BlockStyleToolbar extends React.Component {
-	render() {
-		const { editorState } = this.props;
-		const selection = editorState.getSelection();
-		const blockType = editorState
-			.getCurrentContent()
-			.getBlockForKey(selection.getStartKey())
-			.getType();
+  render() {
+    const { editorState } = this.props;
+    const selection = editorState.getSelection();
+    const blockType = editorState
+      .getCurrentContent()
+      .getBlockForKey(selection.getStartKey())
+      .getType();
 
-		return (
-			<span className="RichEditor-controls">
-				<HeaderStyleDropdown
-					headerOptions={HEADER_TYPES}
-					active={blockType}
-					onToggle={this.props.onToggle}
-				/>
+    return (
+      <span className="RichEditor-controls">
+        <HeaderStyleDropdown
+          headerOptions={HEADER_TYPES}
+          active={blockType}
+          onToggle={this.props.onToggle}
+        />
 
-				{BLOCK_TYPES.map(type => {
-					return (
-						<BlockStyleButton
-							active={type.style === blockType}
-							label={type.label}
-							onToggle={this.props.onToggle}
-							style={type.style}
-							key={type.key}
-							type={type}
-						/>
-					);
-				})}
-			</span>
-		);
-	}
+        {BLOCK_TYPES.map(type => {
+          return (
+            <BlockStyleButton
+              active={type.style === blockType}
+              label={type.label}
+              onToggle={this.props.onToggle}
+              style={type.style}
+              key={type.key}
+              type={type}
+            />
+          );
+        })}
+      </span>
+    );
+  }
 }
 
 export default BlockStyleToolbar;
