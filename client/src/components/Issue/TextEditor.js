@@ -25,11 +25,13 @@ class TextEditor extends React.Component {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
   };
 
-  onChange = editorState => {
+  onChange = (editorState) => {
+    const contentState = editorState.getCurrentContent();
+    console.log('content state', convertToRaw(contentState));
     this.setState({
-      editorState
+      editorState,
     });
-  };
+  }
 
   handleKeyCommand = command => {
     const newState = RichUtils.handleKeyCommand(
