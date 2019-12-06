@@ -9,12 +9,9 @@ When you build an application so many issues and ideas come your way that you ne
 ![Screenshot of Details of the chosen issue](client/public/img/EditDetails.png)
 ![Screenshot of the 404 page](client/public/img/page404.png)
 
-Built With
-React.JS
-MongoDB
-Node.JS
-Auth0
+## Technology Used: 
+* React, Axios, DraftJS, Express, MongoDB, NodeJS, Styled-Components, SASS 
 
-Authors
-Tetiana Cary
-Jegor Jeskovs
+## Contributors:
+* Jegors Jeskovs | https://github.com/jjeskovs
+* Tetiana Cary | https://github.com/tcary
