@@ -82,12 +82,6 @@ class EditDetail extends Component {
                   details={this.state.issue.details}
                   projectId={this.state.issue.projectId}
                 />
-                <TextEditor
-                  key={this.state.issue.id}
-                  issue={this.state.issue.issue}
-                  details={this.state.issue.details}
-                  projectId={this.state.issue.projectId}
-                />
                 <h5 style={{ color: "#2a878c", margin: "15px" }}>
                   Have you resolved this issue?{" "}
                 </h5>
