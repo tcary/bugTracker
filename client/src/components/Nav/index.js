@@ -34,20 +34,6 @@ function Nav() {
         <Button className="button" outline color="secondary">
           Sign Up
         </Button>{" "}
-        <img
-          className="search"
-          alt="Picture of magnifying glass"
-          src="./img/magnifying-glass.png"
-          style={{
-            opacity: window.location.pathname === "/" ? 0 : 1,
-            // float: "right",
-            width: "30px",
-            height: "30px",
-            color: "link",
-            zIndex: "3",
-            marginLeft: "50%"
-          }}
-        ></img>
       </div>
     </nav>
   );
