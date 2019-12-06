@@ -139,13 +139,13 @@ class Detail extends Component {
                 />
 
                 {/* code below saves an object to the database */}
-                {/* <TextArea
-                    value={this.state.details}
-                    onChange={this.handleInputChange}
-                    name="details"
-                    placeholder="Description (required)"
-                  /> */}
                 <TextEditor
+                  value={this.state.details}
+                  onChange={this.handleInputChange}
+                  name="details"
+                  placeholder="Description (required)"
+                />
+                <TextArea
                   value={this.state.details}
                   onChange={this.handleInputChange}
                   name="details"
