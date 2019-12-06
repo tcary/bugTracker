@@ -9,7 +9,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import ToggleDisplay from "react-toggle-display";
 import Dropdown from "../components/Dropdown";
-
+import TextEditor from "../components/Issue/TextEditor";
 
 class Detail extends Component {
   constructor(props) {
@@ -29,10 +29,9 @@ class Detail extends Component {
     this.loadIssues();
   }
   loadIssues = () => {
-
     API.getProject(this.props.match.params.id)
-    // .then(res => console.log("in detail", res.data.issues))
-    .then(res =>
+      // .then(res => console.log("in detail", res.data.issues))
+      .then(res =>
         this.setState({
           issues: res.data.issues,
           filteredIssues: res.data.issues
@@ -79,7 +78,6 @@ class Detail extends Component {
     }
   };
   render() {
-   
     return (
       <Container style={{ width: "70%" }}>
         <Row>
@@ -94,8 +92,8 @@ class Detail extends Component {
             <Jumbotron>
               <h1>Issues</h1>
             </Jumbotron>
-           
-           {/* Dropdown Button Component */}
+
+            {/* Dropdown Button Component */}
             {/* this.filteredIssues below call the function that sets the state for filteredIssue*/}
             <Dropdown filteredIssues={this.filteredIssues} />
 
@@ -103,20 +101,15 @@ class Detail extends Component {
             {this.state.filteredIssues.length ? (
               <List>
                 {this.state.filteredIssues.map(issue => (
-                  <ListItem 
-                    key={issue._id}>
-                    <Link 
-                      to={"/issues/details/" + issue._id}>
+                  <ListItem key={issue._id}>
+                    <Link to={"/issues/details/" + issue._id}>
                       <strong>{issue.issue}</strong>
-                      
+
                       {issue.resolved ? (
-                        <strong 
-                          style={{ float: "right" }}>
+                        <strong style={{ float: "right" }}>
                           <span> Resolved </span>{" "}
-                          
                           <DeleteBtn
                             onClick={() => this.deleteIssue(issue._id)}
-                          
                           />
                         </strong>
                       ) : (
@@ -132,27 +125,33 @@ class Detail extends Component {
           </Col>
 
           <Col size="md-6">
-            <FormBtn 
-              onClick={() => this.handleFormSubmit()}>
+            <FormBtn onClick={() => this.handleFormSubmit()}>
               + Submit an Issue
             </FormBtn>
-            
-            <ToggleDisplay 
-              show={this.state.show}>
-                <form>
-                  <Input
-                    value={this.state.issue}
-                    onChange={this.handleInputChange}
-                    name="issue"
-                    placeholder="Name Of The Issue (required)"
-                  />
-                  <TextArea
+
+            <ToggleDisplay show={this.state.show}>
+              <form>
+                <Input
+                  value={this.state.issue}
+                  onChange={this.handleInputChange}
+                  name="issue"
+                  placeholder="Name Of The Issue (required)"
+                />
+
+                {/* code below saves an object to the database */}
+                {/* <TextArea
                     value={this.state.details}
                     onChange={this.handleInputChange}
                     name="details"
                     placeholder="Description (required)"
-                  />
-                </form>
+                  /> */}
+                <TextEditor
+                  value={this.state.details}
+                  onChange={this.handleInputChange}
+                  name="details"
+                  placeholder="Description (required)"
+                />
+              </form>
             </ToggleDisplay>
           </Col>
         </Row>
