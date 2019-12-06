@@ -1,5 +1,5 @@
 import React from "react";
-import { Editor,EditorState, RichUtils, ContentState, convertFromRaw } from "draft-js";
+import { Editor, EditorState, RichUtils, ContentState, convertFromRaw, convertToRaw } from "draft-js";
 import BlockStyleToolbar, { getBlockStyle } from "./blockStyles/BlockStyleToolbar";
 import "./editorCSS/style.css";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
