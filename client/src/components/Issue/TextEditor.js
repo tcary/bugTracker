@@ -9,10 +9,10 @@ class TextEditor extends React.Component {
     super(props);
     // the code below will load an empty text Editor
     this.state = {
-      // editorState: EditorState.createEmpty()
-      editorState: EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.details))
-      )
+      editorState: EditorState.createEmpty()
+      // editorState: EditorState.createWithContent(
+        // convertFromRaw(JSON.parse(props.details))
+      
       // rawContent: props.details
     };
 
@@ -40,7 +40,7 @@ class TextEditor extends React.Component {
 
   onChange = editorState => {
     const contentState = editorState.getCurrentContent();
-    console.log("content state", convertToRaw(contentState));
+    // console.log("content state", convertToRaw(contentState));
     this.setState({
       editorState
     });
