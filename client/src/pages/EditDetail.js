@@ -37,12 +37,12 @@ class EditDetail extends Component {
       .catch(err => console.log(err));
   };
 
-  // handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   // handleFormSubmit = event => {
   //   event.preventDefault();
