@@ -22,7 +22,7 @@ class Detail extends Component {
       projectId: this.props.match.params,
       show: false
     };
-    console.log("Looking for prohect Id", this.props.match.params)
+
   }
   // calling the database for all issues associated with one project
   componentDidMount() {

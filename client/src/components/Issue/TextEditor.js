@@ -1,5 +1,5 @@
 import React from "react";
-import { Editor, EditorState, RichUtils, ContentState, convertFromRaw, convertToRaw } from "draft-js";
+import { Editor, EditorState, RichUtils, ContentState, convertFromRaw } from "draft-js";
 import BlockStyleToolbar, { getBlockStyle } from "./blockStyles/BlockStyleToolbar";
 import "./editorCSS/style.css";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
@@ -7,28 +7,18 @@ import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 class TextEditor extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(this.props)
-   // let content = EditorState.createEmpty(); 
+    // the code below will load an empty text Editor
     this.state = {
       editorState: EditorState.createEmpty()
     };
 
-    
-    // const contentState = convertFromRaw(props);
-    // console.log(contentState);
-    // console.log(contentState);
+    // the code below is trying to load the content from the Database.
+    // const content = convertFromRaw(JSON.parse(props.details));
+    // const editorState = EditorState.createWithContent(content)
 
-
-//     let editorStatewithContent = EditorState.createWithContent(contentState);     
-//  //Then you set the state 
-//     this.state = {
-//      editorState:  editorStatewithContent      
-//     }
-    // console.log(props.details);
-    //this.state = {
-     // editorState: EditorState.createWithContent("Test 1")
-      //editorState: EditorState.createWithContent(props.details)
-   // };
+    // this.state = {
+    //     editorState: EditorState
+    //   };
   }
   toggleBlockType = blockType => {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
@@ -44,7 +34,7 @@ class TextEditor extends React.Component {
     const newState = RichUtils.handleKeyCommand(
       this.state.editorState,
       command
-    );  
+    );
     if (newState) {
       this.onChange(newState);
       return "handled";
@@ -72,14 +62,15 @@ class TextEditor extends React.Component {
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
   };
 
-  render(props) {
-    console.log(this.state)
+  render() {
     return (
       <div className="editorContainer">
         <div className="toolbar">
           <BlockStyleToolbar
-            key="78"
-            //editorState={this.state.editorState}
+            // editorState={this.state.editorState}
+            editorState={EditorState.createWithContent(
+              ContentState.createFromText("Hello")
+            )}
             onToggle={this.toggleBlockType}
           />
           <button className="styleButton" onClick={this.onUnderlineClick}>
@@ -94,9 +85,9 @@ class TextEditor extends React.Component {
         </div>
 
         {/* <div className="editors"> */}
-          {/* <TextEditor
+        {/* <Editor
             blockStyleFn={getBlockStyle}
-            //editorState={this.state.editorState}
+            editorState={this.state.editorState}
             handleKeyCommand={this.handleKeyCommand}
             onChange={this.onChange}
           /> */}

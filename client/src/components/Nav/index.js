@@ -27,14 +27,14 @@ function Nav() {
       <div className="bug-container bug-container--four">
         <div className="bug bug--four"></div>
       </div>
-      <div className="login">
+      {/* <div className="login">
         <Button className="button" outline color="secondary">
           Log In
         </Button>{" "}
         <Button className="button" outline color="secondary">
           Sign Up
         </Button>{" "}
-      </div>
+      </div> */}
     </nav>
   );
 }

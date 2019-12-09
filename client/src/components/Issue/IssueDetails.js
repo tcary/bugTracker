@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import TextEditor from "./TextEditor";
+import { TextArea } from "../Form/"
 import { Card } from "reactstrap";
 import "./style.scss";
 
@@ -43,18 +44,20 @@ class IssueDetails extends Component {
         <h2>{this.props.issue}</h2>
       </Card>
       <TextEditor
-      key={this.state.issue.id}
-      issue={this.state.issue.issue}
-      details={this.state.issue.details}
-      projectId={this.state.issue.projectId}
+      // key={this.state.issue.id}
+      // issue={this.state.issue.issue}
+      // details={this.state.issue.details}
+      // projectId={this.state.issue.projectId}
       />
-      <textarea
+      <TextArea
         className="form-control"
         id="exampleFormControlTextarea1"
+        value={this.state.details}
+        onChange={this.handleInputChange}
         rows="3"
         >
         {this.props.details}
-      </textarea>
+      </TextArea>
     </>
   );
   }
