@@ -151,6 +151,7 @@ class Detail extends Component {
                   onChange={this.handleInputChange}
                   name="details"
                   placeholder="Description (required)"
+                  fieldName="details"
                 />
               </form>
             </ToggleDisplay>

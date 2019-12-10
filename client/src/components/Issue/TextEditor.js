@@ -68,9 +68,7 @@ class TextEditor extends React.Component {
         <div className="toolbar">
           <BlockStyleToolbar
             // editorState={this.state.editorState}
-            editorState={EditorState.createWithContent(
-              ContentState.createFromText("Hello")
-            )}
+            editorState={EditorState.createWithContent(ContentState.createFromText("Hello"))}
             onToggle={this.toggleBlockType}
           />
           <button className="styleButton" onClick={this.onUnderlineClick}>
