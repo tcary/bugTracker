@@ -41,12 +41,22 @@ class SearchBar extends Component {
     //     .querySelector(`option[value='${value}']`)
     //     .getAttribute("id")
     // );
-    this.setState({
-      selectedIssue: value,
-      selectedId: event.target.nextSibling
-        .querySelector(`option[value='${value}']`)
-        .getAttribute("id")
-    });
+
+    var option = event.target.nextSibling.querySelector(`option[value='${value}']`)
+    
+    if (typeof (option) != "undefined" && option != null) {
+        this.setState ({selectedIssue: value,
+        selectedId: option.getAttribute("id")})
+    } else {
+      this.setState ({
+        selectedIssue: value
+      })
+    }
+
+    // this.setState({
+    //   selectedIssue: value,
+    //   selectedId: option.getAttribute("id")
+    // });
   };
 
   handleFormSubmit = event => {
@@ -90,7 +100,7 @@ class SearchBar extends Component {
         </datalist>
         <button
           id="btn"
-          onClick={() => this.handleFormSubmit}
+          onClick={this.handleFormSubmit}
           type="submit"
           className="btn btn-dark btn-block mt-2"
         >
