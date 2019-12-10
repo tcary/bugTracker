@@ -44,7 +44,8 @@ module.exports = {
   checkedUpdate: function(req, res) {
     db.Issue.findOneAndUpdate(
       { _id: req.params.id },
-      { $set: { resolved: true } }
+      { $set: { resolved: true, details: req.body.details  } },
+
     )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

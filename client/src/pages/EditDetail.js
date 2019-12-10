@@ -13,7 +13,9 @@ class EditDetail extends Component {
   state = {
     issue: "",
     details: "",
-    projectId: ""
+    projectId: "",
+    issueId: ""
+
   };
 
   componentDidMount() {
@@ -24,11 +26,15 @@ class EditDetail extends Component {
     // console.log("how to see the res", this.state);
     API.getDetail(this.props.match.params.id)
       .then(
-        res => this.setState({ issue: res.data })
+        res => this.setState({ issue: res.data, issueId: res.data._id })
         // this.setState({ details: res.data.details, issue: res.data.issue })
       )
       .catch(err => console.log(err));
   };
+
+  updateDetail = details => {
+    this.setState ({ details: details })
+  }
 
   updateIssue = id => {
     API.updateIssue(id)
@@ -43,18 +49,22 @@ class EditDetail extends Component {
       [name]: value
     });
   };
+  
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.state.issue && this.state.details) {
-  //     API.saveIssue({
-  //       issue: this.state.issue,
-  //       details: this.state.details
-  //     })
-  //       .then(res => this.loadIssues())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
+  handleUpdateIssue = event => {
+    event.preventDefault();
+    if (this.state.issue && this.state.details) {
+      API.updateIssue(this.state.issueId, {
+        // issue: this.state.issue,
+        details: this.state.details
+        
+      })
+        .then(res => this.props.history.goBack())
+        .catch(err => console.log(err));
+    }
+    
+  };
+
 
   render() {
     const { match, location, history } = this.props;
@@ -80,23 +90,21 @@ class EditDetail extends Component {
                   issue={this.state.issue.issue}
                   details={this.state.issue.details}
                   projectId={this.state.issue.projectId}
+                  updateDetail={this.updateDetail}
                 />
                 <h5 style={{ color: "#2a878c", margin: "15px" }}>
                   Have you resolved this issue?{" "}
                 </h5>
                 <ResolvedBtn
-                  onClick={() => {
-                    this.updateIssue(this.state.issue._id);
-                    history.goBack();
-                  }}
+                  onClick={this.handleUpdateIssue}
                 ></ResolvedBtn>
 
                 <UnresolvedBtn
-                  onClick={() => {
-                    // this.updateIssue(this.state.issue._id);
-                    history.goBack();
-                  }}
+                  onClick={this.handleUpdateIssue}
+
                 ></UnresolvedBtn>
+                    
+                
               </>
             ) : (
               <h3>No Results to Display</h3>

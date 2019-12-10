@@ -53,6 +53,7 @@ class Detail extends Component {
       .catch(err => console.log(err));
   };
 
+
   handleFormSubmit = event => {
     // event.preventDefault();
     this.setState({ show: !this.state.show });

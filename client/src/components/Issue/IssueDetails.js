@@ -18,9 +18,13 @@ class IssueDetails extends Component {
   
     handleInputChange = event => {
       const { name, value } = event.target;
+
       this.setState({
-        [name]: value
-      });
+          [name]: value
+      }, () => this.props.updateDetail(value));
+
+      
+
     };
 
     handleFormSubmit = event => {
@@ -29,6 +33,7 @@ class IssueDetails extends Component {
         issue: this.state.issue,
         details: this.state.details,
         projectId: this.props.match.params.id
+        
       })
 
         .then(res => this.loadIssues())
@@ -55,7 +60,8 @@ class IssueDetails extends Component {
         value={this.state.details}
         onChange={this.handleInputChange}
         rows="3"
-        >
+        fieldName="details"
+        > 
         {this.props.details}
       </TextArea>
     </>

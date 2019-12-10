@@ -34,9 +34,11 @@ export default {
   deleteIssue: function(id) {
     return axios.delete("/api/issues/" + id);
   },
-  updateIssue: function(id) {
-    // console.log("Api.js", id);
-    return axios.put(`/api/issues/details/${id}`);
+
+  // to update an existing issue with new detail.
+  updateIssue: function(id, issueData) {
+    return axios.put(`/api/issues/details/${id}`, issueData);
+
   },
   // unresolveIssue: function(id) {
   //   return axios.put("api/issues" + id);

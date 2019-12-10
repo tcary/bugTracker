@@ -8,7 +8,7 @@ When you build an application so many issues and ideas come your way that you ne
 
 ![Screenshot of logo page](client/public/img/welcomeScreen.png)
 
-### The next screen is the list of all your projects. With an option to add the project in the top right corner of the main app. 
+### The next screen is the list of all your projects. With an option to add the project in the top right corner of the main app. At this point the user also can search for any tasks/issue associated with any projects. The search is also auto populating with issues from the database to help the user.  
 
 ![Screenshot of Projects list](client/public/img/projectsList.png)
 
