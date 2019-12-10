@@ -22,23 +22,23 @@ class Detail extends Component {
       projectId: this.props.match.params,
       show: false
     };
-  }
 
+  }
   // calling the database for all issues associated with one project
   componentDidMount() {
     this.loadIssues();
   }
   loadIssues = () => {
     API.getProject(this.props.match.params.id)
-      // .then(res => console.log("in detail", res.data.issues))
-      .then(res =>
-        this.setState({
-          issues: res.data.issues,
-          filteredIssues: res.data.issues
-        })
+    // .then(res => console.log("in detail", res.data.issues))
+    .then(res =>
+      this.setState({
+        issues: res.data.issues,
+        filteredIssues: res.data.issues
+      })
       )
       .catch(err => console.log(err));
-  };
+    };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -52,6 +52,7 @@ class Detail extends Component {
       .then(res => this.loadIssues())
       .catch(err => console.log(err));
   };
+
 
   handleFormSubmit = event => {
     // event.preventDefault();
