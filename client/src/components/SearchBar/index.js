@@ -69,7 +69,7 @@ class SearchBar extends Component {
     }
     return (
       // <h3>Where are you?</h3>
-      <form onClick={() => this.handleFormSubmit}>
+      <form onSubmit={() => this.handleFormSubmit}>
         <label htmlFor="issue-choice">Issue name:</label>
         <input
           list="issues"
